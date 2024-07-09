@@ -1,7 +1,4 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Node.js CI
+name: AI Training Game CI
 
 on:
   push:
@@ -11,13 +8,11 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node-version: [16.x, 18.x]
+        # We've removed 14.x as it's no longer needed, and kept 16.x and 18.x
 
     steps:
     - uses: actions/checkout@v4
@@ -26,6 +21,17 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - name: Install dependencies
+      run: npm ci
+    - name: Build
+      run: npm run build --if-present
+    - name: Run tests
+      run: npm test
+    - name: Start server and test
+      run: |
+        npm install -g wait-on
+        node server.js &
+        wait-on http://localhost:3000
+        curl http://localhost:3000
+      env:
+        CI: true
