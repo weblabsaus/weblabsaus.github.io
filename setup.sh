@@ -7,10 +7,6 @@ then
     exit 1
 fi
 
-# Clone the repository
-git clone https://github.com/weblabsaus/Trainiese
-
-# Change to the Trainiese directory
 cd Trainiese
 
 # Initialize npm and create package.json
