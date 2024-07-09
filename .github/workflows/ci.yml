@@ -1,0 +1,36 @@
+name: AI Training Game CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Start server and run tests
+      run: |
+        npm install -g wait-on
+        node server.js &
+        wait-on http://localhost:3000
+        curl http://localhost:3000
+      env:
+        CI: true
+
+    - name: Stop server
+      if: always()
+      run: |
+        lsof -ti :3000 | xargs kill -9 || true
