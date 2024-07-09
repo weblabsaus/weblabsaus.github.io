@@ -29,8 +29,3 @@ jobs:
         curl http://localhost:3000
       env:
         CI: true
-
-    - name: Stop server
-      if: always()
-      run: |
-        lsof -ti :3000 | xargs kill -9 || true
