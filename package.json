@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "express": "^4.17.1",
+    "natural": "^5.1.13",
+    "node-fetch": "^2.6.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
