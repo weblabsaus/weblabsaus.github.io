@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Training Game</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Training Game</h1>
+        </header>
+        <main>
+            <div id="chat-box"></div>
+            <div class="input-container">
+                <input type="text" id="user-input" placeholder="Chat with the AI...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+            <div class="input-container">
+                <textarea id="training-input" rows="4" placeholder="Train the AI..."></textarea>
+                <button onclick="trainAI()">Train</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+    <script>
+        startup();
+    </script>
+</body>
+</html>
