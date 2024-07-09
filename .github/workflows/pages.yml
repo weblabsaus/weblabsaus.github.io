@@ -1,0 +1,39 @@
+name: Linux Setup Script CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Make setup script executable
+      run: chmod +x setup.sh
+
+    - name: Run setup script
+      run: ./setup.sh
+
+    - name: Verify server is running
+      run: |
+        sleep 10  # Give some time for the server to start
+        curl -sSf http://localhost:3000 > /dev/null && echo "Server is running" || (echo "Server is not running" && exit 1)
+
+    - name: Check installed dependencies
+      run: npm list --depth=0
+
+    - name: Check Node.js version
+      run: node --version
+
+    - name: Check npm version
+      run: npm --version
