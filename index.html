@@ -4,30 +4,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Training Game</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        #chat-box {
+            height: 300px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+            overflow-y: auto;
+        }
+        .input-container {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        input[type="text"], textarea {
+            flex-grow: 1;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>AI Training Game</h1>
-        </header>
-        <main>
-            <div id="chat-box"></div>
-            <div class="input-container">
-                <input type="text" id="user-input" placeholder="Chat with the AI...">
-                <button onclick="sendMessage()">Send</button>
-            </div>
-            <div class="input-container">
-                <textarea id="training-input" rows="4" placeholder="Train the AI..."></textarea>
-                <button onclick="trainAI()">Train</button>
-            </div>
-        </main>
+        <h1>AI Training Game</h1>
+        <div id="chat-box"></div>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Chat with the AI...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+        <div class="input-container">
+            <textarea id="training-input" rows="4" placeholder="Train the AI..."></textarea>
+            <button onclick="trainAI()">Train</button>
+        </div>
     </div>
 
-    <script src="/static/js/script.js"></script>
     <script>
-        startup();
+        async function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            const chatBox = document.getElementById('chat-box');
+            
+            chatBox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+            
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: userInput }),
+                });
+                
+                const data = await response.json();
+                chatBox.innerHTML += `<p><strong>AI:</strong> ${data.response}</p>`;
+            } catch (error) {
+                console.error('Error:', error);
+                chatBox.innerHTML += '<p><strong>Error:</strong> Failed to get response from AI.</p>';
+            }
+            
+            document.getElementById('user-input').value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        async function trainAI() {
+            const trainingInput = document.getElementById('training-input').value;
+            
+            try {
+                const response = await fetch('/train', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ input: trainingInput }),
+                });
+                
+                const data = await response.json();
+                alert('AI trained successfully!');
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to train AI.');
+            }
+            
+            document.getElementById('training-input').value = '';
+        }
     </script>
 </body>
 </html>
