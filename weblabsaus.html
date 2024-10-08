@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weblabsaus | Programming Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Raleway:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Fira Mono', monospace;
+        }
+        body {
+            background: linear-gradient(135deg, #1f2937, #4b5563);
+            color: white;
+            scroll-behavior: smooth;
+        }
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out 1s forwards;
+        }
+        .title {
+            font-family: 'Raleway', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #60a5fa;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+            border-right: 2px solid #60a5fa;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 4s steps(25) 1.5s forwards, blink 1s step-end infinite alternate;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 18ch; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.8;
+            animation: fadeIn 4s ease-in-out 5s forwards;
+        }
+        .cta-button {
+            background-color: #3b82f6;
+            color: white;
+            text-transform: uppercase;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            animation: fadeIn 2.5s ease-in-out 6s forwards;
+        }
+        .cta-button:hover {
+            background-color: #2563eb;
+            transform: translateY(-5px);
+        }
+        section {
+            padding: 60px 20px;
+            animation: fadeIn 1.5s ease 7s forwards;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h2 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .project {
+            background-color: #374151;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            animation: fadeIn 2s ease 7.5s forwards;
+        }
+        .project:hover {
+            transform: translateY(-10px);
+        }
+        .project h3 {
+            margin-bottom: 15px;
+        }
+        .project a {
+            text-decoration: none;
+            color: #60a5fa;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            transition: color 0.3s ease;
+        }
+        .project a:hover {
+            color: #3b82f6;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1f2937;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 40px;
+            animation: fadeIn 2.5s ease-in-out 8s forwards;
+        }
+        .github-link a {
+            text-decoration: none;
+            color: #60a5fa;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        .github-link a:hover {
+            color: #3b82f6;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 class="title">weblabsaus</h1>
+    <p class="subtitle">Developer • Innovator • Creator</p>
+    <a href="#projects" class="cta-button">Explore My Work</a>
+</header>
+
+<section id="about">
+    <div class="container">
+        <h2>About Me</h2>
+        <p>Welcome! I'm a software developer specializing in building innovative, user-friendly applications that push the boundaries of web technology.</p>
+    </div>
+</section>
+
+<section id="projects">
+    <div class="container">
+        <h2>My Projects</h2>
+        <div class="project-grid">
+            <div class="project">
+                <h3>Webtek Launcher</h3>
+                <p>A modern launcher designed for productivity.</p>
+                <a href="https://weblabsaus.github.io/webtek/" target="_blank">View Project</a>
+            </div>
+            <div class="project">
+                <h3>Mega Launcher</h3>
+                <p>An advanced launcher that combines functionality with style.</p>
+                <a href="https://weblabsaus.github.io/Mega-Launcher/" target="_blank">View Project</a>
+            </div>
+            <div class="project">
+                <h3>Embedded Player</h3>
+                <p>A customizable media player for seamless music integration.</p>
+                <a href="https://weblabsaus.github.io/embeddedplayer/" target="_blank">View Project</a>
+            </div>
+            <div class="project">
+                <h3>SpearMint Marketplace</h3>
+                <p>A marketplace platform with auto-fetching capabilities.</p>
+                <a href="https://github.com/weblabsaus/Spearmint" target="_blank">View Project</a>
+            </div>
+            <div class="project">
+                <h3>WompSocial</h3>
+                <p>A fun and interactive social app.</p>
+                <a href="https://weblabsaus.github.io/womp/" target="_blank">View Project</a>
+            </div>
+            <div class="project">
+                <h3>Eagle Launcher</h3>
+                <p>A highly customizable launcher for power users.</p>
+                <a href="https://weblabsaus.github.io/eagle/" target="_blank">View Project</a>
+            </div>
+            <div class="project">
+                <h3>Helium Extension</h3>
+                <p>An open-source extension for enhanced browsing experiences.</p>
+                <a href="https://github.com/Helium-Extension/helium-extension" target="_blank">View Project</a>
+            </div>
+            <div class="project">
+                <h3>Space Shooter</h3>
+                <p>A fun and interactive space shooter game built for the web.</p>
+                <a href="https://weblabsaus.github.io/Space-Shooter/" target="_blank">View Project</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="github-link">
+        <p>Check out more on my <a href="https://github.com/weblabsaus" target="_blank">GitHub Profile</a>.</p>
+    </div>
+</footer>
+
+</body>
+</html>
